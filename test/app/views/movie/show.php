@@ -103,6 +103,11 @@ if (empty($movie)) {
                         <a href="/test/Movie/list" class="btn btn-secondary">
                             <i class="fas fa-arrow-left me-2"></i>Quay lại
                         </a>
+                        <?php if (SessionHelper::isLoggedIn()): ?>
+                            <a href="/test/Booking/showtime/<?php echo (int)$movie['movie_id']; ?>" class="btn btn-success">
+                                <i class="fas fa-ticket-alt me-2"></i>Mua vé
+                            </a>
+                        <?php endif; ?>
                         <?php if (SessionHelper::isAdmin()): ?>
                             <a href="/test/Movie/edit/<?php echo (int)$movie['movie_id']; ?>" class="btn btn-primary">
                                 <i class="fas fa-edit me-2"></i>Sửa thông tin

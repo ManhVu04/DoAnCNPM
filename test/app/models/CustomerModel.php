@@ -3,43 +3,36 @@ require_once 'app/config/database.php';
 
 class CustomerModel {
     private $db;
-    private $conn;
 
     public function __construct() {
         $this->db = new Database();
-        $this->conn = $this->db->getConnection();
     }
 
     public function register($data) {
         try {
             // Kiểm tra email đã tồn tại chưa
-            $checkEmail = "SELECT COUNT(*) FROM customers WHERE email = :email";
-            $checkStmt = $this->conn->prepare($checkEmail);
-            $checkStmt->execute([':email' => $data['email']]);
+            $this->db->query("SELECT COUNT(*) FROM customers WHERE email = :email");
+            $this->db->bind(':email', $data['email']);
             
-            if ($checkStmt->fetchColumn() > 0) {
+            if ($this->db->single()['COUNT(*)'] > 0) {
                 return ['error' => 'Email đã tồn tại trong hệ thống'];
             }
 
-            $sql = "INSERT INTO customers (first_name, last_name, email, password, phone_number, address, role) 
-                    VALUES (:first_name, :last_name, :email, :password, :phone_number, :address, :role)";
+            $this->db->query("INSERT INTO customers (first_name, last_name, email, password, phone_number, address, role) 
+                    VALUES (:first_name, :last_name, :email, :password, :phone_number, :address, :role)");
             
-            $stmt = $this->conn->prepare($sql);
-            $params = [
-                ':first_name' => $data['first_name'],
-                ':last_name' => $data['last_name'],
-                ':email' => $data['email'],
-                ':password' => $data['password'],
-                ':phone_number' => $data['phone_number'],
-                ':address' => $data['address'],
-                ':role' => 'user'
-            ];
+            $this->db->bind(':first_name', $data['first_name']);
+            $this->db->bind(':last_name', $data['last_name']);
+            $this->db->bind(':email', $data['email']);
+            $this->db->bind(':password', $data['password']);
+            $this->db->bind(':phone_number', $data['phone_number']);
+            $this->db->bind(':address', $data['address']);
+            $this->db->bind(':role', 'user');
 
-            if ($stmt->execute($params)) {
+            if ($this->db->execute()) {
                 return ['success' => true, 'message' => 'Đăng ký thành công'];
             } else {
-                $error = $stmt->errorInfo();
-                error_log("SQL Error: " . print_r($error, true));
+                error_log("SQL Error in register");
                 return ['error' => 'Không thể thêm dữ liệu vào database'];
             }
         } catch (PDOException $e) {
@@ -53,11 +46,10 @@ class CustomerModel {
 
     public function login($email) {
         try {
-            $sql = "SELECT * FROM customers WHERE email = :email LIMIT 1";
-            $stmt = $this->conn->prepare($sql);
-            $stmt->execute([':email' => $email]);
+            $this->db->query("SELECT * FROM customers WHERE email = :email LIMIT 1");
+            $this->db->bind(':email', $email);
             
-            return $stmt->fetch(PDO::FETCH_ASSOC);
+            return $this->db->single();
         } catch (PDOException $e) {
             return ['error' => 'Đã có lỗi xảy ra khi đăng nhập'];
         }
@@ -65,11 +57,10 @@ class CustomerModel {
 
     public function getCustomerById($id) {
         try {
-            $sql = "SELECT * FROM customers WHERE customer_id = :id LIMIT 1";
-            $stmt = $this->conn->prepare($sql);
-            $stmt->execute([':id' => $id]);
+            $this->db->query("SELECT * FROM customers WHERE customer_id = :id LIMIT 1");
+            $this->db->bind(':id', $id);
             
-            return $stmt->fetch(PDO::FETCH_ASSOC);
+            return $this->db->single();
         } catch (PDOException $e) {
             return null;
         }
@@ -77,23 +68,20 @@ class CustomerModel {
 
     public function updateProfile($id, $data) {
         try {
-            $sql = "UPDATE customers 
+            $this->db->query("UPDATE customers 
                     SET first_name = :first_name, 
                         last_name = :last_name, 
                         phone_number = :phone_number, 
                         address = :address 
-                    WHERE customer_id = :id";
+                    WHERE customer_id = :id");
             
-            $stmt = $this->conn->prepare($sql);
-            $params = [
-                ':id' => $id,
-                ':first_name' => $data['first_name'],
-                ':last_name' => $data['last_name'],
-                ':phone_number' => $data['phone_number'],
-                ':address' => $data['address']
-            ];
+            $this->db->bind(':id', $id);
+            $this->db->bind(':first_name', $data['first_name']);
+            $this->db->bind(':last_name', $data['last_name']);
+            $this->db->bind(':phone_number', $data['phone_number']);
+            $this->db->bind(':address', $data['address']);
 
-            return $stmt->execute($params);
+            return $this->db->execute();
         } catch (PDOException $e) {
             return ['error' => 'Đã có lỗi xảy ra khi cập nhật thông tin'];
         }

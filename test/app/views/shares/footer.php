@@ -1,3 +1,5 @@
+    </div><?php // Kết thúc phần nội dung chính (.content-wrapper) ?>
+    
     <footer class="footer-bg text-center text-lg-start mt-4">
         <div class="container p-4">
             <div class="row">

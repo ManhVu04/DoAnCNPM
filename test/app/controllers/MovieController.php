@@ -8,8 +8,8 @@ class MovieController {
     private $db;
 
     public function __construct() {
-        $this->db = (new Database())->getConnection();
-        $this->movieModel = new MovieModel($this->db);
+        $this->db = new Database();
+        $this->movieModel = new MovieModel();
     }
 
     public function index() {

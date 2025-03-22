@@ -34,6 +34,11 @@ class SessionHelper {
         return $_SESSION['role'] ?? 'guest';
     }
 
+    // Get user ID
+    public static function getUserId() {
+        return $_SESSION['customer_id'] ?? null;
+    }
+
     // Check if user has permission for an action
     public static function hasPermission($action) {
         $role = self::getRole();

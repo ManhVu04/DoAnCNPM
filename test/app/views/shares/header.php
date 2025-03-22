@@ -10,6 +10,23 @@ require_once 'app/helpers/SessionHelper.php';
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .content-wrapper {
+            flex: 1 0 auto;
+        }
+        footer {
+            flex-shrink: 0;
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
@@ -52,6 +69,11 @@ require_once 'app/helpers/SessionHelper.php';
                                         <i class="fas fa-user-circle me-1"></i>Thông tin cá nhân
                                     </a>
                                 </li>
+                                <li>
+                                    <a class="dropdown-item" href="/test/Booking/index">
+                                        <i class="fas fa-ticket-alt me-1"></i>Lịch sử đặt vé
+                                    </a>
+                                </li>
                                 <?php if (SessionHelper::isAdmin()): ?>
                                     <li>
                                         <a class="dropdown-item" href="/test/Movie/add">
@@ -79,9 +101,35 @@ require_once 'app/helpers/SessionHelper.php';
                             </a>
                         </li>
                     <?php endif; ?>
+                    <?php if (SessionHelper::isAdmin()): ?>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown">
+                                <i class="fas fa-cogs me-1"></i>Quản lý hệ thống
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" href="/test/Theater/index">
+                                        <i class="fas fa-building me-1"></i>Quản lý rạp chiếu
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="/test/Screen/index">
+                                        <i class="fas fa-tv me-1"></i>Quản lý phòng chiếu
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="/test/Showtime/index">
+                                        <i class="fas fa-calendar-alt me-1"></i>Quản lý lịch chiếu
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    <?php endif; ?>
                 </ul>
             </div>
         </div>
     </nav>
+    
+    <div class="content-wrapper"><?php // Bắt đầu phần nội dung chính ?>
 </body>
 </html>

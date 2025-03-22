@@ -24,7 +24,7 @@ class AuthController {
             
             if ($customer && password_verify($password, $customer['password'])) {
                 SessionHelper::setCustomer($customer);
-                header('Location: /tets1/Movie/list');
+                header('Location: /test/Movie/list');
                 exit();
             } else {
                 $error = 'Email hoặc mật khẩu không chính xác';
@@ -70,7 +70,7 @@ class AuthController {
                 include 'app/views/auth/register.php';
             } else {
                 $_SESSION['success'] = 'Đăng ký thành công! Vui lòng đăng nhập.';
-                header('Location: /tets1/Auth/login');
+                header('Location: /test/Auth/login');
                 exit();
             }
         } else {
@@ -80,7 +80,7 @@ class AuthController {
 
     public function logout() {
         SessionHelper::destroy();
-        header('Location: /tets1/Auth/login');
+        header('Location: /test/Auth/login');
         exit();
     }
 

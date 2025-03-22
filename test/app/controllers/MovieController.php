@@ -68,7 +68,7 @@ class MovieController {
                 }
 
                 if ($this->movieModel->addMovie($data)) {
-                    header('Location: /tets1/Movie/list');
+                    header('Location: /test/Movie/list');
                     exit();
                 } else {
                     $error = "Không thể thêm phim mới";
@@ -87,7 +87,7 @@ class MovieController {
         
         $movie = $this->movieModel->getMovieById($id);
         if (!$movie) {
-            header('Location: /tets1/Movie/list');
+            header('Location: /test/Movie/list');
             exit();
         }
 
@@ -125,7 +125,7 @@ class MovieController {
                 }
 
                 if ($this->movieModel->updateMovie($id, $data)) {
-                    header('Location: /tets1/Movie/list');
+                    header('Location: /test/Movie/list');
                     exit();
                 } else {
                     $error = "Không thể cập nhật thông tin phim";
@@ -151,7 +151,7 @@ class MovieController {
                 }
 
                 if ($this->movieModel->deleteMovie($id)) {
-                    header('Location: /tets1/Movie/list');
+                    header('Location: /test/Movie/list');
                     exit();
                 }
             }
@@ -159,7 +159,7 @@ class MovieController {
             error_log("Error in MovieController::delete() - " . $e->getMessage());
         }
         
-        header('Location: /tets1/Movie/list');
+        header('Location: /test/Movie/list');
         exit();
     }
 
@@ -169,12 +169,12 @@ class MovieController {
             if ($movie) {
                 include 'app/views/movie/show.php';
             } else {
-                header('Location: /tets1/Movie/list');
+                header('Location: /test/Movie/list');
                 exit();
             }
         } catch (Exception $e) {
             error_log("Error in MovieController::show() - " . $e->getMessage());
-            header('Location: /tets1/Movie/list');
+            header('Location: /test/Movie/list');
             exit();
         }
     }

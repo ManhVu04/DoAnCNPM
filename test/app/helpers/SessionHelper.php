@@ -61,21 +61,21 @@ class SessionHelper {
     // Require specific permission or redirect
     public static function requirePermission($action) {
         if (!self::hasPermission($action)) {
-            header('Location: /tets1/Account/login');
+            header('Location: /test/Account/login');
             exit;
         }
     }
 
     public static function requireLogin() {
         if (!self::isLoggedIn()) {
-            header('Location: /tets1/Auth/login');
+            header('Location: /test/Auth/login');
             exit();
         }
     }
 
     public static function requireAdmin() {
         if (!self::isAdmin()) {
-            header('Location: /tets1/Movie/list');
+            header('Location: /test/Movie/list');
             exit();
         }
     }

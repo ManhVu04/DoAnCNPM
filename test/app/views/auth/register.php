@@ -24,7 +24,7 @@
                         </div>
                     <?php endif; ?>
 
-                    <form action="/tets1/Auth/register" method="POST">
+                    <form action="/test/Auth/register" method="POST">
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="first_name" class="form-label">Họ</label>
@@ -88,7 +88,7 @@
                             <button type="submit" class="btn btn-primary">
                                 <i class="fas fa-user-plus me-2"></i>Đăng ký
                             </button>
-                            <a href="/tets1/Auth/login" class="btn btn-outline-secondary">
+                            <a href="/test/Auth/login" class="btn btn-outline-secondary">
                                 <i class="fas fa-sign-in-alt me-2"></i>Đã có tài khoản? Đăng nhập
                             </a>
                         </div>

@@ -14,7 +14,7 @@ require_once 'app/helpers/SessionHelper.php';
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
         <div class="container">
-            <a class="navbar-brand" href="/tets1/Movie/list">
+            <a class="navbar-brand" href="/test/Movie/list">
                 <i class="fas fa-film me-2"></i>Cinema Booking
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -23,13 +23,13 @@ require_once 'app/helpers/SessionHelper.php';
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/tets1/Movie/list">
+                        <a class="nav-link" href="/test/Movie/list">
                             <i class="fas fa-list me-1"></i>Danh sách phim
                         </a>
                     </li>
                     <?php if (SessionHelper::isAdmin()): ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="/tets1/Movie/add">
+                            <a class="nav-link" href="/test/Movie/add">
                                 <i class="fas fa-plus me-1"></i>Thêm phim mới
                             </a>
                         </li>
@@ -48,20 +48,20 @@ require_once 'app/helpers/SessionHelper.php';
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <li>
-                                    <a class="dropdown-item" href="/tets1/Auth/profile">
+                                    <a class="dropdown-item" href="/test/Auth/profile">
                                         <i class="fas fa-user-circle me-1"></i>Thông tin cá nhân
                                     </a>
                                 </li>
                                 <?php if (SessionHelper::isAdmin()): ?>
                                     <li>
-                                        <a class="dropdown-item" href="/tets1/Movie/add">
+                                        <a class="dropdown-item" href="/test/Movie/add">
                                             <i class="fas fa-plus me-1"></i>Thêm phim mới
                                         </a>
                                     </li>
                                 <?php endif; ?>
                                 <li><hr class="dropdown-divider"></li>
                                 <li>
-                                    <a class="dropdown-item text-danger" href="/tets1/Auth/logout">
+                                    <a class="dropdown-item text-danger" href="/test/Auth/logout">
                                         <i class="fas fa-sign-out-alt me-1"></i>Đăng xuất
                                     </a>
                                 </li>
@@ -69,12 +69,12 @@ require_once 'app/helpers/SessionHelper.php';
                         </li>
                     <?php else: ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="/tets1/Auth/login">
+                            <a class="nav-link" href="/test/Auth/login">
                                 <i class="fas fa-sign-in-alt me-1"></i>Đăng nhập
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/tets1/Auth/register">
+                            <a class="nav-link" href="/test/Auth/register">
                                 <i class="fas fa-user-plus me-1"></i>Đăng ký
                             </a>
                         </li>

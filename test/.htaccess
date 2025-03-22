@@ -1,5 +1,5 @@
 RewriteEngine On
-RewriteBase /tets1/
+RewriteBase /test/
 
 # Nếu file hoặc thư mục không tồn tại
 RewriteCond %{REQUEST_FILENAME} !-f

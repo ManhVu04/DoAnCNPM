@@ -3,7 +3,7 @@ include_once 'app/views/shares/header.php';
 
 // Kiểm tra xem có dữ liệu phim không
 if (empty($movie)) {
-    header('Location: /tets1/Movie/list');
+    header('Location: /test/Movie/list');
     exit();
 }
 ?>
@@ -14,20 +14,20 @@ if (empty($movie)) {
             <?php
             $posterUrl = '';
             if (!empty($movie['poster_url'])) {
-                if (strpos($movie['poster_url'], '/tets1/') === 0) {
+                if (strpos($movie['poster_url'], '/test/') === 0) {
                     $posterUrl = $movie['poster_url'];
                 } else {
-                    $posterUrl = '/tets1/' . $movie['poster_url'];
+                    $posterUrl = '/test/' . $movie['poster_url'];
                 }
             } else {
-                $posterUrl = '/tets1/assets/images/no-poster.jpg';
+                $posterUrl = '/test/assets/images/no-poster.jpg';
             }
             ?>
             <img src="<?php echo htmlspecialchars($posterUrl); ?>" 
                  class="img-fluid rounded shadow" 
                  alt="<?php echo htmlspecialchars($movie['title']); ?>"
                  style="width: 100%; max-height: 500px; object-fit: cover;"
-                 onerror="this.onerror=null; this.src='/tets1/assets/images/no-poster.jpg';">
+                 onerror="this.onerror=null; this.src='/test/assets/images/no-poster.jpg';">
         </div>
         <div class="col-md-8">
             <div class="card shadow h-100">
@@ -100,14 +100,14 @@ if (empty($movie)) {
                     <?php endif; ?>
 
                     <div class="d-flex gap-2 mt-4">
-                        <a href="/tets1/Movie/list" class="btn btn-secondary">
+                        <a href="/test/Movie/list" class="btn btn-secondary">
                             <i class="fas fa-arrow-left me-2"></i>Quay lại
                         </a>
                         <?php if (SessionHelper::isAdmin()): ?>
-                            <a href="/tets1/Movie/edit/<?php echo (int)$movie['movie_id']; ?>" class="btn btn-primary">
+                            <a href="/test/Movie/edit/<?php echo (int)$movie['movie_id']; ?>" class="btn btn-primary">
                                 <i class="fas fa-edit me-2"></i>Sửa thông tin
                             </a>
-                            <a href="/tets1/Movie/delete/<?php echo (int)$movie['movie_id']; ?>" 
+                            <a href="/test/Movie/delete/<?php echo (int)$movie['movie_id']; ?>" 
                                class="btn btn-danger"
                                onclick="return confirm('Bạn có chắc chắn muốn xóa phim này?');">
                                 <i class="fas fa-trash-alt me-2"></i>Xóa phim

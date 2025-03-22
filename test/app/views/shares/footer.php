@@ -12,9 +12,9 @@
                 <div class="col-lg-3 col-md-6 mb-4">
                     <h5 class="text-uppercase text-white">Liên kết nhanh</h5>
                     <ul class="list-unstyled mb-0">
-                        <li><a href="/tets1/Movie" class="text-light hover-link">Danh sách phim</a></li>
+                        <li><a href="/test/Movie" class="text-light hover-link">Danh sách phim</a></li>
                         <?php if (SessionHelper::isLoggedIn()): ?>
-                            <li><a href="/tets1/Movie/add" class="text-light hover-link">Thêm phim mới</a></li>
+                            <li><a href="/test/Movie/add" class="text-light hover-link">Thêm phim mới</a></li>
                         <?php endif; ?>
                     </ul>
                 </div>

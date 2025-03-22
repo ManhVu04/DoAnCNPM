@@ -10,7 +10,7 @@ include_once 'app/views/shares/header.php';
                 <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
                     <h4 class="mb-0">Danh sách phim</h4>
                     <?php if (SessionHelper::isAdmin()): ?>
-                        <a href="/tets1/Movie/add" class="btn btn-light">
+                        <a href="/test/Movie/add" class="btn btn-light">
                             <i class="fas fa-plus me-2"></i>Thêm phim mới
                         </a>
                     <?php endif; ?>
@@ -34,14 +34,14 @@ include_once 'app/views/shares/header.php';
                                         <?php
                                         $posterUrl = '';
                                         if (!empty($movie['poster_url'])) {
-                                            // Kiểm tra xem poster_url có bắt đầu bằng /tets1/ không
-                                            if (strpos($movie['poster_url'], '/tets1/') === 0) {
+                                            // Kiểm tra xem poster_url có bắt đầu bằng /test/ không
+                                            if (strpos($movie['poster_url'], '/test/') === 0) {
                                                 $posterUrl = $movie['poster_url'];
                                             } else {
-                                                $posterUrl = '/tets1/' . $movie['poster_url'];
+                                                $posterUrl = '/test/' . $movie['poster_url'];
                                             }
                                         } else {
-                                            $posterUrl = '/tets1/assets/images/no-poster.jpg';
+                                            $posterUrl = '/test/assets/images/no-poster.jpg';
                                         }
                                         ?>
                                         <div class="position-relative" style="height: 300px;">
@@ -49,7 +49,7 @@ include_once 'app/views/shares/header.php';
                                                 class="card-img-top h-100 w-100" 
                                                 alt="<?php echo htmlspecialchars($movie['title']); ?>"
                                                 style="object-fit: cover;"
-                                                onerror="this.onerror=null; this.src='/tets1/assets/images/no-poster.jpg';">
+                                                onerror="this.onerror=null; this.src='/test/assets/images/no-poster.jpg';">
                                         </div>
                                         <div class="card-body">
                                             <h5 class="card-title text-truncate">
@@ -89,16 +89,16 @@ include_once 'app/views/shares/header.php';
                                         </div>
                                         <div class="card-footer bg-transparent border-top-0">
                                             <div class="d-flex gap-2">
-                                                <a href="/tets1/Movie/show/<?php echo (int)$movie['movie_id']; ?>" 
+                                                <a href="/test/Movie/show/<?php echo (int)$movie['movie_id']; ?>" 
                                                    class="btn btn-info text-white flex-grow-1">
                                                     <i class="fas fa-info-circle me-1"></i>Chi tiết
                                                 </a>
                                                 <?php if (SessionHelper::isAdmin()): ?>
-                                                    <a href="/tets1/Movie/edit/<?php echo (int)$movie['movie_id']; ?>" 
+                                                    <a href="/test/Movie/edit/<?php echo (int)$movie['movie_id']; ?>" 
                                                        class="btn btn-primary flex-grow-1">
                                                         <i class="fas fa-edit me-1"></i>Sửa
                                                     </a>
-                                                    <a href="/tets1/Movie/delete/<?php echo (int)$movie['movie_id']; ?>" 
+                                                    <a href="/test/Movie/delete/<?php echo (int)$movie['movie_id']; ?>" 
                                                        class="btn btn-danger flex-grow-1"
                                                        onclick="return confirm('Bạn có chắc chắn muốn xóa phim này?');">
                                                         <i class="fas fa-trash-alt me-1"></i>Xóa

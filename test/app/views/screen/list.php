@@ -16,6 +16,13 @@ SessionHelper::requireAdmin();
                 <div class="alert alert-danger"><?php echo $error; ?></div>
             <?php endif; ?>
             
+            <?php if(isset($_SESSION['success_message'])): ?>
+                <div class="alert alert-success">
+                    <?php echo $_SESSION['success_message']; ?>
+                    <?php unset($_SESSION['success_message']); ?>
+                </div>
+            <?php endif; ?>
+            
             <?php if(empty($screens)): ?>
                 <div class="alert alert-info">Không có phòng chiếu nào.</div>
             <?php else: ?>
@@ -28,6 +35,7 @@ SessionHelper::requireAdmin();
                                 <th>Phòng số</th>
                                 <th>Loại phòng</th>
                                 <th>Sức chứa</th>
+                                <th>Bố trí ghế</th>
                                 <th class="text-center">Thao tác</th>
                             </tr>
                         </thead>
@@ -39,6 +47,13 @@ SessionHelper::requireAdmin();
                                     <td><?php echo htmlspecialchars($screen['screen_number']); ?></td>
                                     <td><?php echo htmlspecialchars($screen['screen_type'] ?? 'Thường'); ?></td>
                                     <td><?php echo (int)$screen['capacity']; ?> ghế</td>
+                                    <td>
+                                        <?php if(isset($screen['rows']) && isset($screen['seats_per_row'])): ?>
+                                            <?php echo (int)$screen['rows']; ?> hàng × <?php echo (int)$screen['seats_per_row']; ?> ghế
+                                        <?php else: ?>
+                                            <span class="text-muted fst-italic">Chưa thiết lập</span>
+                                        <?php endif; ?>
+                                    </td>
                                     <td class="text-center">
                                         <a href="/test/Screen/edit/<?php echo $screen['screen_id']; ?>" class="btn btn-sm btn-warning text-white me-1">
                                             <i class="fas fa-edit"></i> Sửa

@@ -54,19 +54,50 @@ class BookingModel {
     }
 
     public function createBooking($data) {
-        // Insert booking
-        $this->db->query("INSERT INTO bookings (customer_id, showtime_id, booking_date, total_amount, payment_status, payment_method) 
-                         VALUES (:customer_id, :showtime_id, :booking_date, :total_amount, :payment_status, :payment_method)");
-        
-        $this->db->bind(':customer_id', $data['user_id']);
-        $this->db->bind(':showtime_id', $data['showtime_id']);
-        $this->db->bind(':booking_date', $data['booking_date']);
-        $this->db->bind(':total_amount', $data['total_amount']);
-        $this->db->bind(':payment_status', $data['payment_status']);
-        $this->db->bind(':payment_method', $data['payment_method']);
-        
-        $this->db->execute();
-        return $this->db->lastInsertId();
+        try {
+            // Log data đầu vào để debug
+            error_log("BookingModel::createBooking - Dữ liệu đầu vào: " . json_encode($data));
+            
+            // Kiểm tra table users
+            if ($this->db->tableExists('users')) {
+                // Kiểm tra user_id có tồn tại trong bảng users không
+                $this->db->query("SELECT id FROM users WHERE id = :user_id");
+                $this->db->bind(':user_id', $data['user_id']);
+                $user = $this->db->single();
+                
+                if (!$user) {
+                    error_log("BookingModel::createBooking - Không tìm thấy user_id trong bảng users: " . $data['user_id']);
+                }
+            } else {
+                error_log("BookingModel::createBooking - Bảng 'users' không tồn tại.");
+            }
+            
+            // Insert booking - Sử dụng ID người dùng trực tiếp
+            $this->db->query("INSERT INTO bookings (customer_id, showtime_id, booking_date, total_amount, payment_status, payment_method) 
+                             VALUES (:customer_id, :showtime_id, :booking_date, :total_amount, :payment_status, :payment_method)");
+            
+            $this->db->bind(':customer_id', $data['user_id']);
+            $this->db->bind(':showtime_id', $data['showtime_id']);
+            $this->db->bind(':booking_date', $data['booking_date']);
+            $this->db->bind(':total_amount', $data['total_amount']);
+            $this->db->bind(':payment_status', $data['payment_status']);
+            $this->db->bind(':payment_method', $data['payment_method']);
+            
+            $result = $this->db->execute();
+            
+            if (!$result) {
+                error_log("BookingModel::createBooking - Không thể tạo booking: " . $this->db->error());
+                throw new Exception("Không thể tạo đơn đặt vé");
+            }
+            
+            $lastId = $this->db->lastInsertId();
+            error_log("BookingModel::createBooking - Đã tạo booking thành công với ID: " . $lastId);
+            
+            return $lastId;
+        } catch (Exception $e) {
+            error_log("BookingModel::createBooking - Lỗi: " . $e->getMessage());
+            throw $e;
+        }
     }
 
     public function updateBooking($id, $data) {
@@ -172,6 +203,87 @@ class BookingModel {
         } catch (Exception $e) {
             $this->db->rollback();
             error_log("Error in BookingModel::cancelBooking(): " . $e->getMessage());
+            return false;
+        }
+    }
+
+    // Thực thi truy vấn trực tiếp (không dùng prepared statement)
+    private function executeRawQuery($query) {
+        try {
+            error_log("BookingModel::executeRawQuery - Thực thi truy vấn trực tiếp: " . $query);
+            
+            // Sử dụng mysqli thay vì PDO
+            $conn = mysqli_connect('localhost', 'root', '', 'cinema_booking');
+            if (!$conn) {
+                error_log("BookingModel::executeRawQuery - Lỗi kết nối mysqli: " . mysqli_connect_error());
+                return false;
+            }
+            
+            // Thực thi truy vấn trực tiếp
+            $result = mysqli_query($conn, $query);
+            
+            if ($result === false) {
+                error_log("BookingModel::executeRawQuery - Lỗi mysqli: " . mysqli_error($conn));
+                mysqli_close($conn);
+                return false;
+            }
+            
+            mysqli_close($conn);
+            return true;
+        } catch (Exception $e) {
+            error_log("BookingModel::executeRawQuery - Exception: " . $e->getMessage());
+            return false;
+        }
+    }
+    
+    public function createBookingTicket($bookingId, $ticketId) {
+        try {
+            // Kiểm tra dữ liệu đầu vào
+            if (!$bookingId || !$ticketId) {
+                error_log("createBookingTicket: bookingId hoặc ticketId không hợp lệ. bookingId: " . $bookingId . ", ticketId: " . $ticketId);
+                return false;
+            }
+            
+            // Chuyển đổi sang kiểu số nguyên để đảm bảo an toàn
+            $bookingId = intval($bookingId);
+            $ticketId = intval($ticketId);
+            
+            // Kiểm tra xem vé đã được đặt chưa
+            $this->db->query("SELECT status FROM tickets WHERE ticket_id = :ticket_id");
+            $this->db->bind(':ticket_id', $ticketId);
+            $ticket = $this->db->single();
+            
+            if (!$ticket) {
+                error_log("createBookingTicket: Không tìm thấy vé với ID " . $ticketId);
+                return false;
+            }
+            
+            // Kiểm tra xem liên kết đã tồn tại chưa
+            $this->db->query("SELECT * FROM booking_tickets WHERE booking_id = :booking_id AND ticket_id = :ticket_id");
+            $this->db->bind(':booking_id', $bookingId);
+            $this->db->bind(':ticket_id', $ticketId);
+            $existing = $this->db->single();
+            
+            if ($existing) {
+                error_log("createBookingTicket: Liên kết đã tồn tại giữa booking ID " . $bookingId . " và ticket ID " . $ticketId);
+                return true; // Liên kết đã tồn tại, coi như thành công
+            }
+            
+            // Sử dụng prepared statement thay vì executeRawQuery
+            $this->db->query("INSERT INTO booking_tickets (booking_id, ticket_id) VALUES (:booking_id, :ticket_id)");
+            $this->db->bind(':booking_id', $bookingId);
+            $this->db->bind(':ticket_id', $ticketId);
+            $result = $this->db->execute();
+            
+            if ($result) {
+                error_log("createBookingTicket: Đã tạo liên kết thành công giữa booking ID " . $bookingId . " và ticket ID " . $ticketId);
+            } else {
+                error_log("createBookingTicket: Lỗi khi tạo liên kết");
+            }
+            
+            return $result;
+        } catch (Exception $e) {
+            error_log("createBookingTicket: Exception: " . $e->getMessage() . "\n" . $e->getTraceAsString());
             return false;
         }
     }

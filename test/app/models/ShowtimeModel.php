@@ -87,7 +87,39 @@ class ShowtimeModel {
         return $this->db->execute();
     }
     
+    public function deleteShowtimeWithTickets($id) {
+        try {
+            // Xóa lịch chiếu với id cụ thể
+            $this->db->query("DELETE FROM showtimes WHERE showtime_id = :id");
+            $this->db->bind(':id', $id);
+            
+            $result = $this->db->execute();
+            if (!$result) {
+                error_log("Failed to delete showtime: " . $id);
+                return false;
+            }
+            
+            return true;
+        } catch (Exception $e) {
+            error_log("Error in ShowtimeModel::deleteShowtimeWithTickets(): " . $e->getMessage());
+            return false;
+        }
+    }
+    
     public function getLastInsertId() {
         return $this->db->lastInsertId();
+    }
+    
+    // Các phương thức quản lý giao dịch
+    public function beginTransaction() {
+        return $this->db->beginTransaction();
+    }
+    
+    public function commit() {
+        return $this->db->commit();
+    }
+    
+    public function rollback() {
+        return $this->db->rollback();
     }
 } 

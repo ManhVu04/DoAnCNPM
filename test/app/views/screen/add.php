@@ -100,6 +100,70 @@ SessionHelper::requireAdmin();
     </div>
 </div>
 
+<style>
+    /* CSS dành riêng cho trang thêm phòng chiếu */
+    .card {
+        background-color: var(--card-bg-color) !important;
+        border-color: var(--border-color) !important;
+    }
+    
+    .card-header {
+        background-color: var(--accent-color) !important;
+        border-bottom: none;
+    }
+    
+    .card-body {
+        color: white;
+    }
+    
+    .form-label {
+        color: white;
+        font-weight: 500;
+    }
+    
+    .text-danger {
+        color: #ff6b6b !important;
+    }
+    
+    .form-text {
+        color: rgba(255, 255, 255, 0.7) !important;
+    }
+    
+    .form-control, .form-select {
+        background-color: rgba(255, 255, 255, 0.08) !important;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        color: white !important;
+    }
+    
+    .form-control:focus, .form-select:focus {
+        background-color: rgba(255, 255, 255, 0.12) !important;
+        border-color: var(--accent-color);
+        box-shadow: 0 0 0 0.25rem rgba(52, 152, 219, 0.25);
+    }
+    
+    .form-control::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+    }
+    
+    .form-select option {
+        background-color: var(--card-bg-color);
+        color: white;
+    }
+    
+    /* Tùy chỉnh alert */
+    .alert-danger {
+        background-color: rgba(231, 76, 60, 0.2);
+        color: #e74c3c;
+        border: 1px solid rgba(231, 76, 60, 0.3);
+    }
+    
+    .alert-success {
+        background-color: rgba(46, 204, 113, 0.2);
+        color: #2ecc71;
+        border: 1px solid rgba(46, 204, 113, 0.3);
+    }
+</style>
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const rowsInput = document.getElementById('rows');

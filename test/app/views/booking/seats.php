@@ -42,7 +42,7 @@ if (isset($_SESSION['success_message'])) unset($_SESSION['success_message']);
                     <i class="fas fa-arrow-left"></i> Quay lại
                 </a>
             </div>
-            <p class="text-muted mt-2">
+            <p class="text-muted mt-2 text-white">
                 <i class="fas fa-calendar-alt me-2"></i><?php echo date('d/m/Y', strtotime($showtime['show_date'])); ?> 
                 <i class="fas fa-clock ms-3 me-2"></i><?php echo date('H:i', strtotime($showtime['show_time'])); ?>
                 <i class="fas fa-building ms-3 me-2"></i><?php echo htmlspecialchars($showtime['theater_name']); ?>
@@ -172,13 +172,13 @@ if (isset($_SESSION['success_message'])) unset($_SESSION['success_message']);
                         <h6><i class="fas fa-info-circle me-2"></i>Thông tin vé:</h6>
                         <p class="mb-1">Giá vé: <span class="fw-bold"><?php echo number_format($showtime['ticket_price'], 0, ',', '.'); ?> đ</span></p>
                         <p class="mb-1">Số ghế tối đa: <span class="fw-bold">8 ghế</span></p>
-                        <p class="mb-0 text-muted small">Lưu ý: Vé đã mua không thể hoàn lại.</p>
+                        <p class="mb-0 text-muted small text-white">Lưu ý: Vé đã mua không thể hoàn lại.</p>
                     </div>
 
                     <div class="selected-seats mb-3">
                         <h6><i class="fas fa-chair me-2"></i>Ghế đã chọn: <span class="text-primary" id="seatCount">(0)</span></h6>
                         <div id="selectedSeatsInfo">
-                            <p class="text-muted">Chưa có ghế nào được chọn</p>
+                            <p class="text-muted text-white">Chưa có ghế nào được chọn</p>
                         </div>
                     </div>
                     
@@ -219,6 +219,7 @@ if (isset($_SESSION['success_message'])) unset($_SESSION['success_message']);
     margin: 0 auto;
     border-radius: 5px;
     box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    color: #333;
 }
 
 .seat-container {
@@ -301,6 +302,7 @@ if (isset($_SESSION['success_message'])) unset($_SESSION['success_message']);
 
 .seat-legend {
     margin-top: 20px;
+    color: white;
 }
 
 .legend-item {
@@ -331,9 +333,52 @@ if (isset($_SESSION['success_message'])) unset($_SESSION['success_message']);
     border: 1px solid #dc3545;
 }
 
+.legend-item span {
+    color: white;
+    margin-left: 5px;
+}
+
+.text-muted {
+    color: white !important;
+}
+
 .price-summary {
     border-top: 1px dashed #dee2e6;
     padding-top: 15px;
+    background-color: rgba(24, 37, 56, 0.8) !important;
+    color: white !important;
+}
+
+.price-summary span {
+    color: white !important;
+}
+
+.price-summary .text-success {
+    color: var(--accent-color) !important;
+}
+
+.ticket-info h6 {
+    color: white;
+}
+
+.ticket-info p {
+    color: white !important;
+}
+
+.ticket-info .fw-bold {
+    color: var(--accent-color);
+}
+
+.selected-seats h6 {
+    color: white;
+}
+
+.selected-seats p {
+    color: white !important;
+}
+
+.selected-seats #seatCount {
+    color: var(--accent-color);
 }
 </style>
 

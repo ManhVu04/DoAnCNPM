@@ -85,12 +85,42 @@ if (empty($movie)) {
 <style>
 .showtime-card {
     transition: transform 0.3s;
-    border: 1px solid #dee2e6;
+    border: 1px solid rgba(52, 152, 219, 0.3);
+    background-color: rgba(24, 37, 56, 0.8);
 }
+
 .showtime-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    border-color: #28a745;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    border-color: var(--accent-color);
+}
+
+.showtime-card .card-title {
+    color: white;
+}
+
+.showtime-card .card-text {
+    color: white;
+}
+
+.showtime-card .card-text small {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.card-header.bg-primary {
+    background-color: var(--accent-color) !important;
+}
+
+h5.mt-3 {
+    color: white;
+    border-left: 4px solid var(--accent-color);
+    padding-left: 10px;
+    margin-top: 20px !important;
+    margin-bottom: 15px;
+}
+
+.card-body {
+    background-color: var(--card-bg-color);
 }
 </style>
 

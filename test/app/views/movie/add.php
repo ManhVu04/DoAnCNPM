@@ -133,4 +133,58 @@
     </div>
 </div>
 
+<style>
+    /* CSS dành riêng cho trang thêm phim */
+    .card {
+        background-color: var(--card-bg-color) !important;
+        border-color: var(--border-color) !important;
+    }
+    
+    .card-header {
+        background-color: var(--accent-color) !important;
+        border-bottom: none;
+    }
+    
+    .card-body {
+        color: white;
+    }
+    
+    .form-label {
+        color: white;
+        font-weight: 500;
+    }
+    
+    .form-text {
+        color: rgba(255, 255, 255, 0.7) !important;
+    }
+    
+    .form-control, .form-select {
+        background-color: rgba(255, 255, 255, 0.08) !important;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        color: white !important;
+    }
+    
+    .form-control:focus, .form-select:focus {
+        background-color: rgba(255, 255, 255, 0.12) !important;
+        border-color: var(--accent-color);
+        box-shadow: 0 0 0 0.25rem rgba(52, 152, 219, 0.25);
+    }
+    
+    .form-control::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+    }
+    
+    .form-select option {
+        background-color: var(--card-bg-color);
+        color: white;
+    }
+    
+    /* Tùy chỉnh alert */
+    .alert-danger {
+        background-color: rgba(231, 76, 60, 0.2);
+        color: #e74c3c;
+        border: 1px solid rgba(231, 76, 60, 0.3);
+    }
+</style>
+
 <?php include_once 'app/views/shares/footer.php'; ?> 

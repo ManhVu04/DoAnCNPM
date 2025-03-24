@@ -99,24 +99,171 @@ if (empty($booking) || empty($tickets)) {
 </div>
 
 <style>
-.success-animation {
-    margin: 20px 0;
-}
-.success-animation i {
-    font-size: 80px;
-    animation: pulse 1.5s infinite;
-}
-@keyframes pulse {
-    0% {
-        transform: scale(0.9);
+    /* CSS dành riêng cho trang đặt vé thành công */
+    .card {
+        background-color: var(--card-bg-color) !important;
+        border-color: #2ecc71 !important;
     }
-    50% {
-        transform: scale(1.1);
+    
+    .card-header {
+        background-color: #2ecc71 !important;
+        border-bottom: none;
     }
-    100% {
-        transform: scale(0.9);
+    
+    .card-body {
+        color: white;
     }
-}
+    
+    .success-animation {
+        margin: 20px 0;
+    }
+    
+    .success-animation i {
+        font-size: 80px;
+        color: #2ecc71;
+        animation: pulse 1.5s infinite;
+    }
+    
+    .text-muted {
+        color: rgba(255, 255, 255, 0.7) !important;
+    }
+    
+    .text-muted strong {
+        color: var(--accent-color);
+    }
+    
+    .border-bottom {
+        border-color: var(--border-color) !important;
+    }
+    
+    .movie-info p, .ticket-info p {
+        color: white;
+        margin-bottom: 0.5rem;
+    }
+    
+    .movie-info strong, .ticket-info strong {
+        color: var(--accent-color);
+    }
+    
+    .movie-info i, .ticket-info i {
+        color: var(--accent-color);
+    }
+    
+    .table {
+        color: white !important;
+        background-color: rgba(24, 37, 56, 0.8) !important;
+        border-radius: 6px;
+        overflow: hidden;
+        margin-bottom: 0;
+    }
+    
+    .table th {
+        color: white !important;
+        border-color: rgba(52, 152, 219, 0.2);
+        background-color: rgba(52, 152, 219, 0.2);
+        font-weight: 600;
+        padding: 12px;
+    }
+    
+    .table td {
+        color: white !important;
+        border-color: rgba(52, 152, 219, 0.1);
+        padding: 12px;
+        vertical-align: middle;
+        background-color: rgba(24, 37, 56, 0.9) !important;
+    }
+    
+    .table tbody tr:nth-child(odd) td {
+        background-color: rgba(24, 37, 56, 0.7) !important;
+    }
+    
+    .table tbody tr:nth-child(even) td {
+        background-color: rgba(24, 37, 56, 0.9) !important;
+    }
+    
+    .table tbody tr:hover td {
+        background-color: rgba(52, 152, 219, 0.2) !important;
+    }
+    
+    .table tfoot tr {
+        background-color: var(--accent-color) !important;
+    }
+    
+    .table tfoot th {
+        color: white !important;
+        background-color: rgba(52, 152, 219, 0.3) !important;
+        font-weight: 600;
+        padding: 12px;
+    }
+    
+    .table tfoot th.text-end {
+        color: white !important;
+        font-weight: 700;
+        font-size: 1.1em;
+    }
+    
+    .text-end {
+        color: #3498db !important;
+        font-weight: 500;
+    }
+    
+    /* Đảm bảo số ghế hiển thị đúng màu */
+    .table tbody td:first-child {
+        font-weight: 600;
+        color: white !important;
+    }
+    
+    /* Đảm bảo giá vé hiển thị đúng màu */
+    .table tbody td.text-end {
+        color: #3498db !important;
+    }
+    
+    .ticket-info h5 {
+        margin-bottom: 15px;
+    }
+    
+    .note-info ol {
+        color: white;
+        padding-left: 1.5rem;
+    }
+    
+    .note-info ol li {
+        margin-bottom: 0.5rem;
+    }
+    
+    .note-info strong {
+        color: var(--accent-color);
+    }
+    
+    h3, h4, h5 {
+        color: white;
+    }
+    
+    .badge {
+        font-weight: 500;
+    }
+    
+    .btn-info {
+        background-color: #3498db;
+        border-color: #3498db;
+    }
+    
+    .btn-info:hover {
+        background-color: #2980b9;
+        border-color: #2980b9;
+    }
+    
+    @keyframes pulse {
+        0% {
+            transform: scale(0.9);
+        }
+        50% {
+            transform: scale(1.1);
+        }
+        100% {
+            transform: scale(0.9);
+        }
+    }
 </style>
 
 <?php include_once 'app/views/shares/footer.php'; ?> 

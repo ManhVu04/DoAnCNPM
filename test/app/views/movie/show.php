@@ -37,13 +37,13 @@ if (empty($movie)) {
                 <div class="card-body">
                     <div class="row mb-3">
                         <div class="col-md-6">
-                            <p><strong><i class="fas fa-film me-2"></i>Thể loại:</strong> 
+                            <p class="text-white"><strong class="text-white"><i class="fas fa-film me-2 text-accent"></i>Thể loại:</strong> 
                                 <?php echo !empty($movie['genre']) ? htmlspecialchars($movie['genre']) : 'Chưa phân loại'; ?>
                             </p>
-                            <p><strong><i class="fas fa-clock me-2"></i>Thời lượng:</strong> 
+                            <p class="text-white"><strong class="text-white"><i class="fas fa-clock me-2 text-accent"></i>Thời lượng:</strong> 
                                 <?php echo !empty($movie['duration']) ? htmlspecialchars($movie['duration']) . ' phút' : 'Chưa cập nhật'; ?>
                             </p>
-                            <p><strong><i class="fas fa-calendar-alt me-2"></i>Ngày công chiếu:</strong> 
+                            <p class="text-white"><strong class="text-white"><i class="fas fa-calendar-alt me-2 text-accent"></i>Ngày công chiếu:</strong> 
                                 <?php 
                                 if (!empty($movie['release_date'])) {
                                     try {
@@ -58,26 +58,26 @@ if (empty($movie)) {
                             </p>
                         </div>
                         <div class="col-md-6">
-                            <p><strong><i class="fas fa-user-tie me-2"></i>Đạo diễn:</strong> 
+                            <p class="text-white"><strong class="text-white"><i class="fas fa-user-tie me-2 text-accent"></i>Đạo diễn:</strong> 
                                 <?php echo !empty($movie['director']) ? htmlspecialchars($movie['director']) : 'Chưa cập nhật'; ?>
                             </p>
-                            <p><strong><i class="fas fa-users me-2"></i>Diễn viên:</strong> 
+                            <p class="text-white"><strong class="text-white"><i class="fas fa-users me-2 text-accent"></i>Diễn viên:</strong> 
                                 <?php echo !empty($movie['actors']) ? htmlspecialchars($movie['actors']) : 'Chưa cập nhật'; ?>
                             </p>
                         </div>
                     </div>
 
-                    <h5 class="border-bottom pb-2 mb-3"><i class="fas fa-align-left me-2"></i>Mô tả phim</h5>
+                    <h5 class="border-bottom pb-2 mb-3 text-white"><i class="fas fa-align-left me-2 text-accent"></i>Mô tả phim</h5>
                     <div class="mb-4">
                         <?php if (!empty($movie['description'])): ?>
-                            <p><?php echo nl2br(htmlspecialchars($movie['description'])); ?></p>
+                            <p class="text-white"><?php echo nl2br(htmlspecialchars($movie['description'])); ?></p>
                         <?php else: ?>
-                            <p class="text-muted">Chưa có mô tả cho phim này.</p>
+                            <p class="text-white opacity-75">Chưa có mô tả cho phim này.</p>
                         <?php endif; ?>
                     </div>
 
                     <?php if (!empty($movie['trailer_url'])): ?>
-                        <h5 class="border-bottom pb-2 mb-3"><i class="fas fa-play-circle me-2"></i>Trailer</h5>
+                        <h5 class="border-bottom pb-2 mb-3 text-white"><i class="fas fa-play-circle me-2 text-accent"></i>Trailer</h5>
                         <div class="ratio ratio-16x9 mb-4">
                             <?php
                             $videoId = '';
@@ -124,5 +124,46 @@ if (empty($movie)) {
         </div>
     </div>
 </div>
+
+<style>
+    /* CSS dành riêng cho trang chi tiết phim */
+    .card {
+        background-color: var(--card-bg-color) !important;
+        border-color: var(--border-color) !important;
+    }
+    
+    .card-header {
+        background-color: var(--accent-color) !important;
+        border-bottom: none;
+    }
+    
+    .card-body {
+        color: white;
+    }
+    
+    .border-bottom {
+        border-color: var(--border-color) !important;
+    }
+    
+    .text-accent {
+        color: var(--accent-color) !important;
+    }
+    
+    strong {
+        font-weight: 600;
+    }
+    
+    /* Tăng độ tương phản của chữ */
+    .text-muted {
+        color: rgba(255, 255, 255, 0.8) !important;
+    }
+    
+    /* Tùy chỉnh alert */
+    .alert-warning {
+        background-color: rgba(255, 193, 7, 0.2);
+        color: #ffc107;
+        border: 1px solid rgba(255, 193, 7, 0.3);
+    }
+</style>
 
 <?php include_once 'app/views/shares/footer.php'; ?> 

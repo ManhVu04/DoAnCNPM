@@ -130,6 +130,22 @@ class BookingController {
         error_log("BookingController::confirm - Xác nhận đặt vé cho showtime ID: " . $showtimeId . ", tickets: " . implode(',', $validTicketIds));
         
         $showtime = $this->showtimeModel->getShowtimeById($showtimeId);
+        
+        // Lấy thông tin poster từ model Movie
+        if (!empty($showtime) && !empty($showtime['movie_id'])) {
+            $movieModel = new MovieModel();
+            $movie = $movieModel->getMovieById($showtime['movie_id']);
+            if (!empty($movie) && !empty($movie['poster_url'])) {
+                // Đảm bảo đường dẫn đầy đủ cho poster
+                $poster_url = $movie['poster_url'];
+                // Nếu đường dẫn không bắt đầu bằng http hoặc / thì thêm tiền tố
+                if (!preg_match('/^(http|https):\/\//', $poster_url) && !preg_match('/^\//', $poster_url)) {
+                    $poster_url = '/test/' . $poster_url;
+                }
+                $showtime['poster'] = $poster_url;
+            }
+        }
+        
         $selectedTickets = [];
         $totalAmount = 0;
         

@@ -19,9 +19,9 @@ SessionHelper::requireAdmin();
             <?php if(empty($theaters)): ?>
                 <div class="alert alert-info">Không có rạp chiếu phim nào.</div>
             <?php else: ?>
-                <div class="table-responsive">
-                    <table class="table table-striped table-hover">
-                        <thead class="table-dark">
+                <div class="table-responsive admin-table">
+                    <table class="table">
+                        <thead>
                             <tr>
                                 <th>ID</th>
                                 <th>Tên rạp</th>
@@ -60,5 +60,71 @@ SessionHelper::requireAdmin();
         </div>
     </div>
 </div>
+
+<style>
+/* CSS cho trang quản lý admin */
+.card {
+    background-color: var(--card-bg-color) !important;
+    border-color: var(--border-color) !important;
+}
+
+.card-header {
+    background-color: var(--accent-color) !important;
+    border-bottom: none;
+}
+
+.card-body {
+    color: white;
+}
+
+.alert-info {
+    background-color: rgba(52, 152, 219, 0.2);
+    border-color: rgba(52, 152, 219, 0.3);
+    color: white;
+}
+
+.admin-table {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table {
+    color: white !important;
+    margin-bottom: 0;
+}
+
+.table thead th {
+    background-color: rgba(52, 152, 219, 0.2) !important;
+    color: white !important;
+    border-color: rgba(52, 152, 219, 0.2);
+    font-weight: 600;
+    padding: 12px;
+    text-align: left;
+}
+
+.table tbody td {
+    background-color: rgba(24, 37, 56, 0.7) !important;
+    color: white !important;
+    border-color: rgba(52, 152, 219, 0.1);
+    padding: 12px;
+    vertical-align: middle;
+}
+
+.table tbody tr:nth-child(odd) td {
+    background-color: rgba(24, 37, 56, 0.7) !important;
+}
+
+.table tbody tr:nth-child(even) td {
+    background-color: rgba(24, 37, 56, 0.9) !important;
+}
+
+.table tbody tr:hover td {
+    background-color: rgba(52, 152, 219, 0.2) !important;
+}
+
+.btn-info, .btn-warning, .btn-danger, .btn-success {
+    font-weight: 500;
+}
+</style>
 
 <?php include_once 'app/views/shares/footer.php'; ?> 

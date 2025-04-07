@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 24, 2025 at 02:56 PM
+-- Generation Time: Apr 07, 2025 at 04:24 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -42,9 +42,9 @@ CREATE TABLE `bookings` (
 --
 
 INSERT INTO `bookings` (`booking_id`, `customer_id`, `showtime_id`, `booking_date`, `total_amount`, `payment_status`, `payment_method`) VALUES
-(1, 1, 20, '2025-03-23 12:53:37', 225000.00, 'paid', 'credit_card'),
-(2, 1, 20, '2025-03-23 12:54:02', 375000.00, 'paid', 'credit_card'),
-(3, 2, 20, '2025-03-23 13:23:30', 225000.00, 'pending', 'at_counter');
+(1, 1, 1, '2025-04-06 13:27:26', 300000.00, 'cancelled', 'credit_card'),
+(2, 2, 1, '2025-04-06 13:27:59', 200000.00, 'cancelled', 'at_counter'),
+(3, 1, 1, '2025-04-06 16:18:22', 300000.00, 'paid', 'credit_card');
 
 -- --------------------------------------------------------
 
@@ -62,17 +62,14 @@ CREATE TABLE `booking_tickets` (
 --
 
 INSERT INTO `booking_tickets` (`booking_id`, `ticket_id`) VALUES
-(1, 147),
-(1, 148),
-(1, 149),
-(2, 150),
-(2, 151),
-(2, 152),
-(2, 153),
-(2, 154),
-(3, 177),
-(3, 187),
-(3, 197);
+(1, 1),
+(1, 2),
+(1, 3),
+(2, 11),
+(2, 21),
+(3, 1),
+(3, 2),
+(3, 3);
 
 -- --------------------------------------------------------
 
@@ -96,8 +93,9 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`customer_id`, `first_name`, `last_name`, `email`, `password`, `phone_number`, `address`, `role`) VALUES
-(1, 'VŨ ', 'Mạnh', 'manhsd2004@gmail.com', '$2y$10$7xiYmXZ16yMtuWjcQEtHJuyQW8fHqE7.6DzE0qb7kwFsyUUMVX1uG', '00999999a', 'khóm 8', 'user'),
-(2, 'VŨ ', 'Hạnh', 'manhsd2002@gmail.com', '$2y$10$zVd81OQKG7GUSsdLfvKZr.DvKKlIzJ/1NqVvWLX43tXwjJrFyJfAa', '009999996566', 'khóm 9', 'admin');
+(1, 'VŨ ', 'Mạnh', 'manhsd2002@gmail.com', '$2y$10$2XIvGb0Ea9QYALegxHj4ZeoXTaTFiCg4jAFiHlOQvDpCnEUr7quma', '0869727137', '', 'admin'),
+(2, 'VŨ ', 'Hạnh', 'manhsd2004@gmail.com', '$2y$10$ZVbw.TsyuDhyJGUiWpGzber6t6G3xGMbPunVNsGQHSWAMKld0Utm6', '00009999', '', 'user'),
+(3, 'VŨ ', 'Hạnh', 'manhsd2001@gmail.com', '$2y$10$QUHnZgz4kbnndz6wohDut.cHJNtKdadu8mmMty3lwxuUuhfKn1.sO', '0869727137', '', 'user');
 
 -- --------------------------------------------------------
 
@@ -123,10 +121,14 @@ CREATE TABLE `movies` (
 --
 
 INSERT INTO `movies` (`movie_id`, `title`, `director`, `actors`, `genre`, `duration`, `release_date`, `description`, `poster_url`, `trailer_url`) VALUES
-(1, 'sdadsad', 'ly hai', 'dddddđ', 'Phiêu lưu', 60, '2025-03-19', 'dâdadadad', 'uploads/posters/67dedd0626943.jpg', NULL),
-(2, 'adsssssssss', '', '', 'Nhạc', 6, '2025-03-22', 'adsdaaaaaaaaa', 'uploads/posters/67dee987e0011_download (2).jpg', 'https://www.youtube.com/watch?v=lUdvLnP6KXQ'),
-(4, 'ădad', 'Hoài Linh', 'dddddddasdasdasdasdasdasdasdasdasdasdasdasdasdsasdsasdasd', 'Bí ẩn', 60, '2025-03-22', 'Là phim bluray (reencoded), có độ phân giải thấp nhất là Full HD (1080p), trong khi hầu hết các trang phim khác chỉ có tới độ phân giải HD (720p) là cao nhất\r\nChất lượng cao, lượng dữ liệu trên giây (bitrate) gấp từ 5 - 10 lần phim online thông thường - đây là yếu tố quyết định độ nét của phim (thậm chí còn quan trọng hơn độ phân giải)\r\nÂm thanh 5.1 (6 channel) thay vì stereo (2 channel) như các trang phim khác (kể cả Youtube)\r\nPhù hợp để xem trên màn hình TV, máy tính, laptop có độ phân giải cao\r\nNếu không hài lòng với phụ đề có sẵn, bạn có thể tự upload phụ đề của riêng mình để xem online\r\nCó lựa chọn hiện phụ đề song ngữ (tức hiện đồng thời cả tiếng Anh & tiếng Việt), phù hợp với những người muốn học tiếng Anh qua phụ đề phim', 'uploads/posters/67dee9dc7302f_Screenshot 2025-03-15 184224.png', 'https://www.youtube.com/watch?v=5MZmSJtP7fE'),
-(5, 'Responsive Login and Registration Form in HTML CSS & Javascript', 'sssssss', 'nd me your github repository link i need to big projects so i cant waste time on authentication pages????', 'Lãng mạn', 60, '2025-03-23', 'Responsive Login and Registration Form in HTML CSS and Javascript, Responsive Login and Signup Form HTML CSS, Responsive Login and Registration Form using HTML CSS and Javascript, Responsive Login and Signup Page in HTML and CSS, Responsive Sign In and Sign Up Form using HTML CSS and Javascript\r\n', 'uploads/posters/67dffa9cce6f3_imager_50_21454_700.jpg', 'https://www.youtube.com/watch?v=Z_AbWH-Vyl8');
+(1, 'Mufasa: The Lion King', 'Barry Jenkins', 'Aaron Pierre, Kelvin Harrison Jr., Seth Rogen, Billy Eichner, Tiffany Boone, Donald Glover, Mads Mikkelsen, Thandiwe Newton, Lennie James, Anika Noni Rose, Blue Ivy Carter, Beyoncé Knowles-Carter.', 'Hoạt hình', 117, '2025-04-06', 'Phim kể về cuộc đời Mufasa – người cha đáng kính của Simba. Dù là tiền truyện, Mufasa: The Lion King vẫn lồng ghép nhân vật quen thuộc từ The Lion King.\r\nNhiều năm trước câu chuyện chính, chú sư tử con Mufasa bơ vơ trơ trọi giữa đồng cỏ châu Phi. Dù không mang dòng máu hoàng gia nhưng Mufasa trở thành vua sư tử vĩ đại sau một hành trình đầy hấp dẫn và kịch tính.', 'uploads/posters/67f25c49b21ff_lurEK87kukWNaHd0zYnsi3yzJrs.webp', 'https://youtu.be/obqiE9Rgs-k'),
+(3, 'Your Name (Kimi no Na wa)', 'Makoto Shinkai', 'Kamiki Ryunosuke,Kamishiraishi Mone.', 'Hoạt hình', 116, '2025-04-06', 'Bộ phim là câu chuyện hoán đổi cơ thể của 2 cô cậu Mitsuha - nữ sinh trung học sống ở một thị trấn nhỏ của vùng Itomori và Taki – nam sinh tại thủ đô Tokyo đầy sôi động.\r\n\r\nMitsuha luôn chán chường với cuộc sống tẻ nhạt của mình và mơ ước được làm anh chàng đẹp trai sống tại thủ đô. Trong khi đó, Taki hằng đêm lại nhìn thấy mình trong hình hài cô gái vùng miền quê. Ước mơ của cả 2 đã thành sự thật khi sao chổi nghìn năm xuất hiện trên trái đất và rồi cứ cách ngày lại được hoán đổi cơ thể cho nhau.\r\n\r\nDiễn viên', 'uploads/posters/67f25d1317ac0_q719jXXEzOoYaps6babgKnONONX.webp', 'https://youtu.be/xU47nhruN-Q'),
+(4, 'John Wick', 'David LeitchChad Stahelski', 'Keanu Reeves, Michael Nyqvist, Alfie Allen, Willem Dafoe, Dean Winters, Adrianne Palicki, Bridget Moynahan, John Leguizamo, Ian McShane, Lance Reddick, Daniel Bernhardt, Omer Barnea, Toby Leonard Moore, David Patrick Kelly.', 'Hành động', 101, '2025-04-06', 'Sau cái chết bất ngờ của người vợ, John Wick (Reeves) nhận được món quà cuối cùng từ cô ấy, một chú chó nhỏ giống beagle tên Daisy, và một lời nhắn \"Xin anh đừng quên cách yêu thương\". Nhưng cuộc sống của John lại bị quấy rối khi chiếc Boss Mustang 1969 lọt vào tầm ngắm của tên mafia Nga Iosef Tarasov (Alfie Allen).\r\n\r\nKhi John từ chối bán chiếc xe, Iosef cùng với tay sai đột nhập vào nhà John và đánh cắp nó, làm anh bất tỉnh và giết chết Daisy. Một cách vô tình, chúng đã đánh thức một trong những sát thủ tàn bạo nhất của thế giới ngầm.', 'uploads/posters/67f25e52cb17c_TxbvYS8wsgYSpYZtQLZXnoVOIQ.webp', 'https://youtu.be/2AUmvWm5ZDQ'),
+(5, 'Weathering with You', 'Makoto Shinkai', 'Kotaro Daigo (Morishima Hodaka), Nana Mori (Hina Amano), Shun Oguri (Keisuke Suga), Tsubasa Honda (Natsumi Suga), Sakura Kiryu (Nagisa Amano), Sei Hiraizumi (Yasui), Yûki Kaji (Takai), Chieko Baishô (Fumi Tachibana).', 'Hoạt hình', 112, '2025-04-06', 'Đứa Con Của Thời Tiết xoay quanh hai nhân vật: Hodaka và Hina. Hodaka là cậu thiếu niên sống trên một hòn đảo nhỏ, đã rời khỏi quê hương để đến Tokyo sầm uất. Tại đây, cậu quen biết với Hina - một cô gái kì lạ có năng lực thanh lọc bầu trời mỗi khi \"cầu nguyện\". Cô có khả năng chặn đứng cơn mưa và xua tan mây đen theo ý muốn.', 'uploads/posters/67f25ec090301_qgrk7r1fV4IjuoeiGS5HOhXNdLJ.webp', 'https://youtu.be/Q6iK6DjV_iE'),
+(6, 'Suzume no Tojimari', 'Makoto Shinkai', 'Nanoka Hara, Hokuto Matsumura, Eri Fukatsu, Shota Sometani, Sairi Ito, Kotone Hanase, Kana Hanazawa, Matsumoto Hakuō II, Ryūnosuke Kamiki, Ann Yamane, Aimi.', 'Hoạt hình', 121, '2025-04-06', 'Câu chuyện bắt đầu khi Suzume vô tình gặp chàng trai Souta đến thị trấn nơi cô sinh sống với mục đích tìm kiếm \"một cánh cửa\". Để bảo vệ Nhật Bản khỏi thảm họa, những cánh cửa rải rác khắp nơi phải được đóng lại, và bất ngờ thay Suzume cũng có khả năng đóng cửa đặc biệt này. Từ đó cả hai cùng nhau thực hiện sứ mệnh \"khóa chặt cửa\".', 'uploads/posters/67f25f87ac1d0_x5CrIflmv8WZJeLv7V611aRGbPs.webp', 'https://youtu.be/RdYs29wQZq4'),
+(7, 'A Silent Voice', 'Naoko Yamada', 'Miyu Irino,Saori Hayami ,Aoi Yûki ,Kenshô Ono ', 'Hoạt hình', 129, '2025-04-06', 'Dáng Hình Thanh Âm xoay quanh cuộc sống học đường của cô bé khiếm thính bẩm sinh Shoko Nishimiya và cậu bé Shoya Ishida, vốn là người bắt nạt Shoko khi cả hai học chung lớp thời tiểu học. Bỗng một ngày, Shoko đột ngột chuyển trường. Cô bỏ lại cậu bé Shoya bị bạn bè xa lánh và chỉ trích, vì giờ đây, Shoya là “kẻ xấu tính chuyên bắt nạt người khác”. Lên trung học, Shoya một lần nữa gặp lại Shoko, cậu quyết định bù đắp lại những tổn thương đã gây ra cho cô bạn thuở xưa. Tuy vậy, liệu rằng mọi chuyện đã quá muộn màng?', 'uploads/posters/67f26146998eb_tuFaWiqX0TXoWu7DGNcmX3UW7sT.webp', 'https://youtu.be/twUSlecQpGQ'),
+(8, 'Hitman 2', 'Choi Won-sub', 'Kwon Sang-woo, Jung Joon-ho, Lee Yi-kyung, Hwang Woo-seul-hye, Kim Sung-oh và Lee Ji-won', 'Hành động', 118, '2025-01-22', 'Câu chuyện tiếp nối về cuộc đời làm hoạ sĩ webtoon Jun, người nổi tiếng trong thời gian ngắn với tư cách là tác giả của webtoon Đặc vụ ám sát Jun, nhanh chóng mang danh là \"nhà văn thiếu não\" sau khi Phần 2 bị chỉ trích thảm hại, nhưng mọi thứ thay đổi khi một cuộc tấn công khủng bố ngoài đời thực giống hệt với phần 2 anh vừa xuất bản, khiến Jun bị NIS buộc tội sai là kẻ chủ mưu đằng sau tội ác.\r\nDiễn viên', 'uploads/posters/67f261d9d12fd_oMocciufHx1x1yVfZQFnbCYd8FI.webp', 'https://youtu.be/a3Df7ruzq8Q'),
+(9, 'Venom: The Last Dance', 'Kelly Marcel', ' Tom Hardy thủ vai chính Eddie Brock/Venom, Chiwetel Ejiofor, Juno Temple, Rhys Ifans, Stephen Graham, Peggy Lu, Clark Backo, ...', 'Hành động', 108, '2024-10-22', 'Đây là phần phim cuối cùng và hoành tráng nhất về cặp đôi Venom và Eddie Brock (Tom Hardy). Sau khi dịch chuyển từ Vũ trụ Marvel trong ‘Spider-man: No way home’ (2021) trở về thực tại, Eddie Brock giờ đây cùng Venom sẽ phải đối mặt với ác thần Knull hùng mạnh - kẻ tạo ra cả chủng tộc Symbiote và những thế lực đang rình rập khác. Cặp đôi Eddie và Venom sẽ phải đưa ra lựa quyết định khốc liệt để hạ màn kèo cuối này.', 'uploads/posters/67f26272c8d9a_vGXptEdgZIhPg3cGlc7e8sNPC2e.jpg', 'https://youtu.be/sZgZL6Yn2fw');
 
 -- --------------------------------------------------------
 
@@ -149,8 +151,7 @@ CREATE TABLE `screens` (
 --
 
 INSERT INTO `screens` (`screen_id`, `theater_id`, `screen_number`, `capacity`, `screen_type`, `rows`, `seats_per_row`) VALUES
-(1, 1, 1, 80, '3D', 8, 10),
-(2, 1, 3, 50, '3D', 5, 10);
+(1, 2, 1, 80, 'Standard', 8, 10);
 
 -- --------------------------------------------------------
 
@@ -172,8 +173,7 @@ CREATE TABLE `showtimes` (
 --
 
 INSERT INTO `showtimes` (`showtime_id`, `movie_id`, `screen_id`, `show_date`, `show_time`, `ticket_price`) VALUES
-(20, 2, 1, '2025-03-25', '21:06:00', 75000.00),
-(21, 2, 2, '2025-03-29', '22:07:00', 80000.00);
+(1, 7, 1, '2025-04-10', '20:20:00', 100000.00);
 
 -- --------------------------------------------------------
 
@@ -196,7 +196,10 @@ CREATE TABLE `theaters` (
 --
 
 INSERT INTO `theaters` (`theater_id`, `name`, `address`, `city`, `state`, `zip_code`, `phone_number`) VALUES
-(1, 'Smaticon', 'Khóm 5', 'HOCHIMINH', 'Hà lội', '554', '00999999a');
+(1, 'Cinestar Quốc Thanh ', '271 Nguyễn Trãi, P. Nguyễn Cư Trinh, Q.1, Tp. Hồ Chí Minh', 'HOCHIMINH', 'HoChiMinh', '', ''),
+(2, 'Cinestar Hai Bà Trưng ', '135 Hai Bà Trưng, P. Bến Nghé, Q.1, Tp. Hồ Chí Minh', 'HOCHIMINH', 'HoChiMinh', '', ''),
+(3, 'Mega GS Cao Thắng', 'Lầu 6 - 7, 19 Cao Thắng, P.2, Q.3, Tp. Hồ Chí Minh', 'HOCHIMINH', 'HoChiMinh', '', ''),
+(4, 'DCINE Bến Thành', 'Số 6, Mạc Đĩnh Chi, Q.1, Tp. Hồ Chí Minh', 'HOCHIMINH', 'HoChiMinh', '', '');
 
 -- --------------------------------------------------------
 
@@ -217,136 +220,86 @@ CREATE TABLE `tickets` (
 --
 
 INSERT INTO `tickets` (`ticket_id`, `showtime_id`, `seat_number`, `price`, `status`) VALUES
-(147, 20, 'A01', 75000.00, 'booked'),
-(148, 20, 'A02', 75000.00, 'booked'),
-(149, 20, 'A03', 75000.00, 'booked'),
-(150, 20, 'A04', 75000.00, 'booked'),
-(151, 20, 'A05', 75000.00, 'booked'),
-(152, 20, 'A06', 75000.00, 'booked'),
-(153, 20, 'A07', 75000.00, 'booked'),
-(154, 20, 'A08', 75000.00, 'booked'),
-(155, 20, 'A09', 75000.00, 'available'),
-(156, 20, 'A10', 75000.00, 'available'),
-(157, 20, 'B01', 75000.00, 'available'),
-(158, 20, 'B02', 75000.00, 'available'),
-(159, 20, 'B03', 75000.00, 'available'),
-(160, 20, 'B04', 75000.00, 'available'),
-(161, 20, 'B05', 75000.00, 'available'),
-(162, 20, 'B06', 75000.00, 'available'),
-(163, 20, 'B07', 75000.00, 'available'),
-(164, 20, 'B08', 75000.00, 'available'),
-(165, 20, 'B09', 75000.00, 'available'),
-(166, 20, 'B10', 75000.00, 'available'),
-(167, 20, 'C01', 75000.00, 'available'),
-(168, 20, 'C02', 75000.00, 'available'),
-(169, 20, 'C03', 75000.00, 'available'),
-(170, 20, 'C04', 75000.00, 'available'),
-(171, 20, 'C05', 75000.00, 'available'),
-(172, 20, 'C06', 75000.00, 'available'),
-(173, 20, 'C07', 75000.00, 'available'),
-(174, 20, 'C08', 75000.00, 'available'),
-(175, 20, 'C09', 75000.00, 'available'),
-(176, 20, 'C10', 75000.00, 'available'),
-(177, 20, 'D01', 75000.00, 'booked'),
-(178, 20, 'D02', 75000.00, 'available'),
-(179, 20, 'D03', 75000.00, 'available'),
-(180, 20, 'D04', 75000.00, 'available'),
-(181, 20, 'D05', 75000.00, 'available'),
-(182, 20, 'D06', 75000.00, 'available'),
-(183, 20, 'D07', 75000.00, 'available'),
-(184, 20, 'D08', 75000.00, 'available'),
-(185, 20, 'D09', 75000.00, 'available'),
-(186, 20, 'D10', 75000.00, 'available'),
-(187, 20, 'E01', 75000.00, 'booked'),
-(188, 20, 'E02', 75000.00, 'available'),
-(189, 20, 'E03', 75000.00, 'available'),
-(190, 20, 'E04', 75000.00, 'available'),
-(191, 20, 'E05', 75000.00, 'available'),
-(192, 20, 'E06', 75000.00, 'available'),
-(193, 20, 'E07', 75000.00, 'available'),
-(194, 20, 'E08', 75000.00, 'available'),
-(195, 20, 'E09', 75000.00, 'available'),
-(196, 20, 'E10', 75000.00, 'available'),
-(197, 20, 'F01', 75000.00, 'booked'),
-(198, 20, 'F02', 75000.00, 'available'),
-(199, 20, 'F03', 75000.00, 'available'),
-(200, 20, 'F04', 75000.00, 'available'),
-(201, 20, 'F05', 75000.00, 'available'),
-(202, 20, 'F06', 75000.00, 'available'),
-(203, 20, 'F07', 75000.00, 'available'),
-(204, 20, 'F08', 75000.00, 'available'),
-(205, 20, 'F09', 75000.00, 'available'),
-(206, 20, 'F10', 75000.00, 'available'),
-(207, 20, 'G01', 75000.00, 'available'),
-(208, 20, 'G02', 75000.00, 'available'),
-(209, 20, 'G03', 75000.00, 'available'),
-(210, 20, 'G04', 75000.00, 'available'),
-(211, 20, 'G05', 75000.00, 'available'),
-(212, 20, 'G06', 75000.00, 'available'),
-(213, 20, 'G07', 75000.00, 'available'),
-(214, 20, 'G08', 75000.00, 'available'),
-(215, 20, 'G09', 75000.00, 'available'),
-(216, 20, 'G10', 75000.00, 'available'),
-(217, 20, 'H01', 75000.00, 'available'),
-(218, 20, 'H02', 75000.00, 'available'),
-(219, 20, 'H03', 75000.00, 'available'),
-(220, 20, 'H04', 75000.00, 'available'),
-(221, 20, 'H05', 75000.00, 'available'),
-(222, 20, 'H06', 75000.00, 'available'),
-(223, 20, 'H07', 75000.00, 'available'),
-(224, 20, 'H08', 75000.00, 'available'),
-(225, 20, 'H09', 75000.00, 'available'),
-(226, 20, 'H10', 75000.00, 'available'),
-(227, 21, 'A01', 80000.00, 'available'),
-(228, 21, 'A02', 80000.00, 'available'),
-(229, 21, 'A03', 80000.00, 'available'),
-(230, 21, 'A04', 80000.00, 'available'),
-(231, 21, 'A05', 80000.00, 'available'),
-(232, 21, 'A06', 80000.00, 'available'),
-(233, 21, 'A07', 80000.00, 'available'),
-(234, 21, 'A08', 80000.00, 'available'),
-(235, 21, 'A09', 80000.00, 'available'),
-(236, 21, 'A10', 80000.00, 'available'),
-(237, 21, 'B01', 80000.00, 'available'),
-(238, 21, 'B02', 80000.00, 'available'),
-(239, 21, 'B03', 80000.00, 'available'),
-(240, 21, 'B04', 80000.00, 'available'),
-(241, 21, 'B05', 80000.00, 'available'),
-(242, 21, 'B06', 80000.00, 'available'),
-(243, 21, 'B07', 80000.00, 'available'),
-(244, 21, 'B08', 80000.00, 'available'),
-(245, 21, 'B09', 80000.00, 'available'),
-(246, 21, 'B10', 80000.00, 'available'),
-(247, 21, 'C01', 80000.00, 'available'),
-(248, 21, 'C02', 80000.00, 'available'),
-(249, 21, 'C03', 80000.00, 'available'),
-(250, 21, 'C04', 80000.00, 'available'),
-(251, 21, 'C05', 80000.00, 'available'),
-(252, 21, 'C06', 80000.00, 'available'),
-(253, 21, 'C07', 80000.00, 'available'),
-(254, 21, 'C08', 80000.00, 'available'),
-(255, 21, 'C09', 80000.00, 'available'),
-(256, 21, 'C10', 80000.00, 'available'),
-(257, 21, 'D01', 80000.00, 'available'),
-(258, 21, 'D02', 80000.00, 'available'),
-(259, 21, 'D03', 80000.00, 'available'),
-(260, 21, 'D04', 80000.00, 'available'),
-(261, 21, 'D05', 80000.00, 'available'),
-(262, 21, 'D06', 80000.00, 'available'),
-(263, 21, 'D07', 80000.00, 'available'),
-(264, 21, 'D08', 80000.00, 'available'),
-(265, 21, 'D09', 80000.00, 'available'),
-(266, 21, 'D10', 80000.00, 'available'),
-(267, 21, 'E01', 80000.00, 'available'),
-(268, 21, 'E02', 80000.00, 'available'),
-(269, 21, 'E03', 80000.00, 'available'),
-(270, 21, 'E04', 80000.00, 'available'),
-(271, 21, 'E05', 80000.00, 'available'),
-(272, 21, 'E06', 80000.00, 'available'),
-(273, 21, 'E07', 80000.00, 'available'),
-(274, 21, 'E08', 80000.00, 'available'),
-(275, 21, 'E09', 80000.00, 'available'),
-(276, 21, 'E10', 80000.00, 'available');
+(1, 1, 'A01', 100000.00, 'booked'),
+(2, 1, 'A02', 100000.00, 'booked'),
+(3, 1, 'A03', 100000.00, 'booked'),
+(4, 1, 'A04', 100000.00, 'available'),
+(5, 1, 'A05', 100000.00, 'available'),
+(6, 1, 'A06', 100000.00, 'available'),
+(7, 1, 'A07', 100000.00, 'available'),
+(8, 1, 'A08', 100000.00, 'available'),
+(9, 1, 'A09', 100000.00, 'available'),
+(10, 1, 'A10', 100000.00, 'available'),
+(11, 1, 'B01', 100000.00, 'available'),
+(12, 1, 'B02', 100000.00, 'available'),
+(13, 1, 'B03', 100000.00, 'available'),
+(14, 1, 'B04', 100000.00, 'available'),
+(15, 1, 'B05', 100000.00, 'available'),
+(16, 1, 'B06', 100000.00, 'available'),
+(17, 1, 'B07', 100000.00, 'available'),
+(18, 1, 'B08', 100000.00, 'available'),
+(19, 1, 'B09', 100000.00, 'available'),
+(20, 1, 'B10', 100000.00, 'available'),
+(21, 1, 'C01', 100000.00, 'available'),
+(22, 1, 'C02', 100000.00, 'available'),
+(23, 1, 'C03', 100000.00, 'available'),
+(24, 1, 'C04', 100000.00, 'available'),
+(25, 1, 'C05', 100000.00, 'available'),
+(26, 1, 'C06', 100000.00, 'available'),
+(27, 1, 'C07', 100000.00, 'available'),
+(28, 1, 'C08', 100000.00, 'available'),
+(29, 1, 'C09', 100000.00, 'available'),
+(30, 1, 'C10', 100000.00, 'available'),
+(31, 1, 'D01', 100000.00, 'available'),
+(32, 1, 'D02', 100000.00, 'available'),
+(33, 1, 'D03', 100000.00, 'available'),
+(34, 1, 'D04', 100000.00, 'available'),
+(35, 1, 'D05', 100000.00, 'available'),
+(36, 1, 'D06', 100000.00, 'available'),
+(37, 1, 'D07', 100000.00, 'available'),
+(38, 1, 'D08', 100000.00, 'available'),
+(39, 1, 'D09', 100000.00, 'available'),
+(40, 1, 'D10', 100000.00, 'available'),
+(41, 1, 'E01', 100000.00, 'available'),
+(42, 1, 'E02', 100000.00, 'available'),
+(43, 1, 'E03', 100000.00, 'available'),
+(44, 1, 'E04', 100000.00, 'available'),
+(45, 1, 'E05', 100000.00, 'available'),
+(46, 1, 'E06', 100000.00, 'available'),
+(47, 1, 'E07', 100000.00, 'available'),
+(48, 1, 'E08', 100000.00, 'available'),
+(49, 1, 'E09', 100000.00, 'available'),
+(50, 1, 'E10', 100000.00, 'available'),
+(51, 1, 'F01', 100000.00, 'available'),
+(52, 1, 'F02', 100000.00, 'available'),
+(53, 1, 'F03', 100000.00, 'available'),
+(54, 1, 'F04', 100000.00, 'available'),
+(55, 1, 'F05', 100000.00, 'available'),
+(56, 1, 'F06', 100000.00, 'available'),
+(57, 1, 'F07', 100000.00, 'available'),
+(58, 1, 'F08', 100000.00, 'available'),
+(59, 1, 'F09', 100000.00, 'available'),
+(60, 1, 'F10', 100000.00, 'available'),
+(61, 1, 'G01', 100000.00, 'available'),
+(62, 1, 'G02', 100000.00, 'available'),
+(63, 1, 'G03', 100000.00, 'available'),
+(64, 1, 'G04', 100000.00, 'available'),
+(65, 1, 'G05', 100000.00, 'available'),
+(66, 1, 'G06', 100000.00, 'available'),
+(67, 1, 'G07', 100000.00, 'available'),
+(68, 1, 'G08', 100000.00, 'available'),
+(69, 1, 'G09', 100000.00, 'available'),
+(70, 1, 'G10', 100000.00, 'available'),
+(71, 1, 'H01', 100000.00, 'available'),
+(72, 1, 'H02', 100000.00, 'available'),
+(73, 1, 'H03', 100000.00, 'available'),
+(74, 1, 'H04', 100000.00, 'available'),
+(75, 1, 'H05', 100000.00, 'available'),
+(76, 1, 'H06', 100000.00, 'available'),
+(77, 1, 'H07', 100000.00, 'available'),
+(78, 1, 'H08', 100000.00, 'available'),
+(79, 1, 'H09', 100000.00, 'available'),
+(80, 1, 'H10', 100000.00, 'available');
 
 --
 -- Indexes for dumped tables
@@ -422,37 +375,37 @@ ALTER TABLE `bookings`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `movies`
 --
 ALTER TABLE `movies`
-  MODIFY `movie_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `movie_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `screens`
 --
 ALTER TABLE `screens`
-  MODIFY `screen_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `screen_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `showtimes`
 --
 ALTER TABLE `showtimes`
-  MODIFY `showtime_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `showtime_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `theaters`
 --
 ALTER TABLE `theaters`
-  MODIFY `theater_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `theater_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tickets`
 --
 ALTER TABLE `tickets`
-  MODIFY `ticket_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=277;
+  MODIFY `ticket_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 
 --
 -- Constraints for dumped tables

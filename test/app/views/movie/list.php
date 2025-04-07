@@ -20,7 +20,7 @@ include_once 'app/views/shares/header.php';
                 </div>
             </div>
             <div class="col-md-5 d-none d-md-block">
-                <img src="/test/assets/images/cinema-illustration.svg" alt="Cinema" class="img-fluid hover-zoom">
+                <img src="/test/uploads/posters/1-43.jpg" alt="Cinema" class="img-fluid hover-zoom">
             </div>
         </div>
     </div>
